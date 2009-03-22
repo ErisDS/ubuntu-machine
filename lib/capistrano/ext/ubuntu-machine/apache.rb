@@ -95,7 +95,7 @@ namespace :apache do
 
     # Website skeleton
     %w{backup cap cgi-bin logs private public tmp}.each { |d|
-      run "mkdir -p /home/#{user}/websites/#{server_name}/#{d}"
+      run "mkdir -p /var/www/#{server_name}/#{d}"
     }
     
     put render("vhost", binding), server_name
@@ -111,7 +111,7 @@ namespace :apache do
     if sure=="y"
       sudo "sudo a2dissite #{server_name}"
       sudo "rm /etc/apache2/sites-available/#{server_name}"
-      sudo "rm -Rf /home/#{user}/websites/#{server_name}"
+      sudo "rm -Rf /var/www/#{server_name}"
       reload
     end
   end  

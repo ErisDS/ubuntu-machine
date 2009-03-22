@@ -30,12 +30,12 @@ namespace :machine do
   task :install_dev_tools do
     mysql.install
     apache.install
-    ruby.install
-    postfix.install
-    gems.install_rubygems
-    ruby.install_enterprise
-    ruby.install_passenger
-    git.install
+    # ruby.install
+    # postfix.install
+    # gems.install_rubygems
+    # ruby.install_enterprise
+    # ruby.install_passenger
+    # git.install
     php.install
   end
   
