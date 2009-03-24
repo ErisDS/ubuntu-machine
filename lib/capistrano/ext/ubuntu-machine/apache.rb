@@ -94,7 +94,7 @@ namespace :apache do
     directory_index = default_directory_index if directory_index.empty?
 
     # Website skeleton
-    %w{backup cap cgi-bin logs private public tmp}.each { |d|
+    %w{backup logs httpdocs httpsdocs}.each { |d|
       run "mkdir -p /var/www/#{server_name}/#{d}"
     }
     
