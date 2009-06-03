@@ -4,6 +4,11 @@ http://suitmymind.github.com/ubuntu-machine
 = Changelog here :
 http://suitmymind.github.com/ubuntu-machine/#changelog
 
-= Contributors :
- - Joseph Glenn
- - Ahume
+
+= Usage
+
+1. git clone git://github.com/alistairstead/ubuntu-machine.git ./my_new_server
+2. cd my_new_server
+3. cap machine:initial_setup
+4. cap machine:configure
+5. cap machine:install_dev_tools
