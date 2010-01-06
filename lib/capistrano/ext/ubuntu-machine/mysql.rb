@@ -61,4 +61,16 @@ namespace :mysql do
     
     run "mysqladmin -u #{user_to_update} -p#{old_password} password \"#{new_password}\""
   end
+  
+  
+  desc "Run an SQL file on the remote server"
+  task :run_file, :roles => :db do
+    db_name = Capistrano::CLI.ui.ask("Which database should we use: ")
+    db_username = Capistrano::CLI.ui.ask("Which database user should we use: ")
+    db_user_password = Capistrano::CLI.ui.ask("Enter the users password password: ")   
+    file = Capistrano::CLI.ui.ask("Which SQL file should we use (it must be located in #{default_local_files_path}): ")
+    upload "#{default_local_files_path}/#{file}", "#{file}"
+    run "mysql -u #{db_username} -p#{db_user_password} #{db_name} < #{file}"
+    run "rm #{file}"
+  end
 end
