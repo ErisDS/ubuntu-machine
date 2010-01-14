@@ -1,7 +1,7 @@
 namespace :apc do
-  desc "Install APC opt code cache"
+  desc "Install APC opcode cache using ubuntu package"
   task :install, :roles => :app do    
-    sudo "pecl install apc -y"
+    sudo "apt-get install php-apc -y"
     sudo "/etc/init.d/apache2 reload"
   end
 
