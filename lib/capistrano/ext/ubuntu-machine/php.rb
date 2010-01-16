@@ -2,9 +2,15 @@ namespace :php do
   desc "Install PHP 5"
   task :install, :roles => :app do    
 
-    sudo "apt-get install libapache2-mod-php5 php5 php5-common php-pear php5-curl php5-dev php5-gd php5-imagick php5-mcrypt php5-memcache php5-mhash php5-mysql php5-pspell php5-snmp php5-sqlite php-soap php5-xmlrpc php5-xsl php-apc -y"
+    sudo "apt-get install libapache2-mod-php5 php5 php5-cli php5-common php-pear php5-curl php5-dev php5-gd php5-imagick php5-mcrypt php5-memcache php5-mhash php5-mysql php5-pspell php5-snmp php5-sqlite php-soap php5-xmlrpc php5-xsl -y"
     sudo "/etc/init.d/apache2 reload"
 
+  end
+  
+  desc "Install APC opcode cache using ubuntu package"
+  task :install_apc, :roles => :app do    
+    sudo "apt-get install php-apc -y"
+    sudo "/etc/init.d/apache2 reload"
   end
 
 	desc "Install PHP 5 development tools"
@@ -30,15 +36,10 @@ namespace :php do
 		# pear install --alldeps phpunit/phpUnderControl
 		
 		sudo "pear upgrade pdepend/PHP_Depend-beta"
-		
 		sudo "pear upgrade phing/phing"
-		
 		sudo "pear upgrade PhpDocumentor"
-		
 		sudo "pear upgrade phpunit/PHPUnit"
-		
-		sudo "pear upgrade phpunit/phpcpd"
-		
+		sudo "pear upgrade phpunit/phpcpd"		
     sudo "/etc/init.d/apache2 reload"
 
 		php.pear_list
