@@ -1,8 +1,9 @@
-= View doc here :
-http://suitmymind.github.com/ubuntu-machine
+This is a fork of the original http://suitmymind.github.com/ubuntu-machine however it has been modified to have slightly more focus on setting a machine up for PHP development.
 
-= Changelog here :
-http://suitmymind.github.com/ubuntu-machine/#changelog
+This is used to setup no only local development virtual machines but also production slices at Slicehost.
+
+= View the original docs here :
+http://suitmymind.github.com/ubuntu-machine
 
 
 = Usage
