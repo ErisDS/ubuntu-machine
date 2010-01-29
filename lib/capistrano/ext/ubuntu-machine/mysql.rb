@@ -19,7 +19,8 @@ namespace :mysql do
   desc "Export MySQL database"
   task :export, :roles => :db do
     database = Capistrano::CLI.ui.ask("Which database should we export: ")
-    sudo_and_watch_prompt("mysqldump -u root -p #{database} > #{database}.sql", /Enter\spassword/)
+    db_username = Capistrano::CLI.ui.ask("Which database user should we use: ")
+    sudo_and_watch_prompt("mysqldump -u #{db_username} -p #{database} > #{database}.sql", /Enter\spassword/)
     download "#{database}.sql", "#{default_local_files_path}/database.sql"
     run "rm #{database}.sql"
   end
@@ -67,10 +68,9 @@ namespace :mysql do
   task :run_file, :roles => :db do
     db_name = Capistrano::CLI.ui.ask("Which database should we use: ")
     db_username = Capistrano::CLI.ui.ask("Which database user should we use: ")
-    db_user_password = Capistrano::CLI.ui.ask("Enter the users password password: ")   
     file = Capistrano::CLI.ui.ask("Which SQL file should we use (it must be located in #{default_local_files_path}): ")
     upload "#{default_local_files_path}/#{file}", "#{file}"
-    run "mysql -u #{db_username} -p#{db_user_password} #{db_name} < #{file}"
+    sudo_and_watch_prompt("mysql -u #{db_username} -p #{db_name} < #{file}", /Enter\spassword/)
     run "rm #{file}"
   end
 end
